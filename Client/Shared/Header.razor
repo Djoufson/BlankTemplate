@@ -1,0 +1,50 @@
+<div class="header">
+    <div class="logo">
+        <a href="/">Home</a>
+    </div>
+    <button @onclick="ToggleNav" class="@HamburgerClass">
+        <span class="line1"></span>
+        <span class="line2"></span>
+        <span class="line3"></span>
+    </button>
+    <ul class="@LinksClass">
+        <li><a href="/profile" @onclick="UnToggleNav">Profile</a></li>
+        <li><a href="/contacts" @onclick="UnToggleNav">Contacts</a></li>
+        <li><a href="/settings" @onclick="UnToggleNav">Settings</a></li>
+        <li><a href="/about" @onclick="UnToggleNav">About</a></li>
+    </ul>
+</div>
+
+@code{
+    public string HamburgerClass { get; set; }
+    public string LinksClass { get; set; }
+
+    public Header()
+    {
+        HamburgerClass = "burger";
+        LinksClass = "links";
+    }
+
+    public void UnToggleNav()
+    {
+        if(!LinksClass.Equals("links"))
+        {
+            LinksClass = "links";
+            HamburgerClass = "burger";
+        }
+    }
+
+    public void ToggleNav()
+    {
+        if(HamburgerClass.Equals("burger",StringComparison.CurrentCultureIgnoreCase))
+        {
+            HamburgerClass += " active";
+            LinksClass += " links-active";
+        }
+        else
+        {
+            HamburgerClass = "burger";
+            LinksClass = "links";
+        }
+    }
+}
